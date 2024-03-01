@@ -90,4 +90,13 @@ class TestCart:
         cart.remove_product(product_book, 14)
         assert cart.get_total_price() == 0
 
+    def test_price_two_different_products(self, cart, product_book, product_pen):
+        cart.add_product(product_book, 100)
+        cart.add_product(product_pen, 40)
+        assert cart.get_total_price() == 10600
+    def test_buy_product_negative(self, cart, product_book):
+        cart.add_product(product_book, 100000)
+        with pytest.raises(ValueError):
+            cart.buy()
+
 
